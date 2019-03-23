@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReceituarioEspecial" pageWidth="433" pageHeight="612" columnWidth="385" leftMargin="20" rightMargin="28" topMargin="28" bottomMargin="172" uuid="a9e88e7f-1faa-48e9-bb4d-440531bf44dc">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="26"/>
+	<property name="ireport.y" value="192"/>
+	<queryString>
+		<![CDATA[SELECT
+     itensreceituario.`ordem`,
+     itensreceituario.`posologia`,
+     itensreceituario.`TipoUso`,
+     paciente.`nomePaciente`,
+     paciente.`prontuario`,
+     paciente.`endereco`,
+     paciente.`cidade`,
+     medicamento.`medicamento`,
+     receituario.`dataReceituario`,
+     itensreceituario.`Receituario`,
+     itensreceituario.`quantidade`
+FROM
+     `receituario` receituario INNER JOIN `itensreceituario` itensreceituario ON receituario.`idReceituario` = itensreceituario.`Receituario`
+     INNER JOIN `medicamento` medicamento ON itensreceituario.`Medicamento` = medicamento.`idMedicamento`
+     INNER JOIN `paciente` paciente ON receituario.`Paciente` = paciente.`idPaciente`
+WHERE
+     receituario = 95]]>
+	</queryString>
+	<field name="ordem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="posologia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TipoUso" class="java.lang.String">
+		<fieldDescription><![CDATA[Interno
+Externo]]></fieldDescription>
+	</field>
+	<field name="nomePaciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prontuario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medicamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataReceituario" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Receituario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="TipoUso">
+		<groupExpression><![CDATA[$F{TipoUso}]]></groupExpression>
+	</group>
+	<group name="ordem">
+		<groupExpression><![CDATA[$F{ordem}]]></groupExpression>
+	</group>
+	<group name="Uso">
+		<groupExpression><![CDATA[$F{TipoUso}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="212" splitType="Stretch">
+			<staticText>
+				<reportElement x="67" y="54" width="118" height="13" uuid="df9d6245-c013-4801-865d-9271c69d219a"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Roberto Camilo de Oliveira]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="92" width="27" height="13" uuid="b3d99533-661c-4c44-8a50-9c2a083153b4"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[34887]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="92" width="19" height="13" uuid="6a4baa7a-023a-4af0-8223-eca26e2d8674"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="109" width="92" height="13" uuid="e9f44934-70ed-4496-8f5b-1f1a9d680c53"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Rua José Virgílio, 255]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="126" width="218" height="13" uuid="35bc8ab4-2048-4040-bb23-ff1c135c365d"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Res.:(32)3281-2442/Cons.: 98836-7946 / 3281-1315]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="145" width="175" height="13" uuid="910c43d6-4919-447a-8e1d-a5e454e9c3fd"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Lima Duarte                                         MG]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="173" width="325" height="16" uuid="ce85ae01-1562-4be4-a034-d0b2fc280e5e"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomePaciente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="55" y="194" width="325" height="15" uuid="ac34f6f1-2d67-4376-8b30-359328b03b3d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="67" y="10" width="16" height="12" uuid="f766cc60-bbde-48fb-a2b5-0ff2823b629d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ordem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="10" width="243" height="12" uuid="d70864ba-e30e-470f-b92b-c146c12d8e61"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="10" width="54" height="12" uuid="3f414a86-4569-40ab-b727-a65d2f34413f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="17" y="29" width="363" height="14" uuid="6960b445-8830-492b-ae17-477707483377"/>
+				<textFieldExpression><![CDATA[$F{posologia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="224" y="3" width="156" height="16" uuid="f2609383-8f76-406b-afeb-9278d34c60ad"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd' de 'MMMMM' de 'yyyy").format($F{dataReceituario})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="3" width="218" height="16" uuid="584c3a44-61e1-49c8-b6bb-a616a18285db"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lima Duarte, ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

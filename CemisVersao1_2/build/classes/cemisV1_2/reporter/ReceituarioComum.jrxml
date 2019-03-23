@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReceituarioComum" pageWidth="425" pageHeight="653" columnWidth="355" leftMargin="42" rightMargin="28" topMargin="127" bottomMargin="79" uuid="b838866c-225c-4e50-b2d7-f1d0519db308">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="71"/>
+	<queryString>
+		<![CDATA[SELECT
+     itensreceituario.`ordem`,
+     itensreceituario.`quantidade`,
+     itensreceituario.`posologia`,
+     itensreceituario.`TipoUso`,
+     paciente.`nomePaciente`,
+     paciente.`prontuario`,
+     paciente.`endereco`,
+     paciente.`cidade`,
+     medicamento.`medicamento`,
+     receituario.`dataReceituario`,
+     itensreceituario.`Receituario`
+FROM
+     `receituario` receituario INNER JOIN `itensreceituario` itensreceituario ON receituario.`idReceituario` = itensreceituario.`Receituario`
+     INNER JOIN `medicamento` medicamento ON itensreceituario.`Medicamento` = medicamento.`idMedicamento`
+     INNER JOIN `paciente` paciente ON receituario.`Paciente` = paciente.`idPaciente`
+WHERE
+     receituario = 95]]>
+	</queryString>
+	<field name="ordem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="posologia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TipoUso" class="java.lang.String">
+		<fieldDescription><![CDATA[Interno
+Externo]]></fieldDescription>
+	</field>
+	<field name="nomePaciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prontuario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medicamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataReceituario" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Receituario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="TipoUso">
+		<groupExpression><![CDATA[$F{TipoUso}]]></groupExpression>
+		<groupHeader>
+			<band height="38">
+				<textField>
+					<reportElement x="4" y="13" width="122" height="19" uuid="24bfe4c0-ff5d-422a-a217-b19c506149f8"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TipoUso}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="4" y="34" width="169" height="1" uuid="f59e7eaf-03e3-4e3e-91ff-0bf85018395e"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="2" width="300" height="20" uuid="a66507a7-0a42-4e07-a70c-3e620e58aad9"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomePaciente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="4" width="18" height="14" uuid="814dd36b-5513-427c-a4d2-27c1902b1688"/>
+				<textFieldExpression><![CDATA[$F{ordem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="4" width="57" height="14" uuid="bd19795b-deb1-4966-837d-9b1b17193ea6"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="22" width="322" height="14" uuid="c53e9e84-e36f-4d35-bdea-8236f748c901"/>
+				<textFieldExpression><![CDATA[$F{posologia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="37" width="332" height="1" forecolor="#CCCCCC" uuid="4c2171f4-f104-46a8-9bc8-109162e8c3a1"/>
+			</line>
+			<textField>
+				<reportElement x="28" y="4" width="265" height="14" uuid="e24856bd-3d3b-4736-8620-d08fd911e389"/>
+				<textFieldExpression><![CDATA[$F{medicamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="72">
+			<textField>
+				<reportElement x="126" y="0" width="210" height="19" uuid="90e204fc-4ff4-4fc7-b35c-022779f824c7"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd' de 'MMMMM' de 'yyyy").format($F{dataReceituario})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="0" width="111" height="20" uuid="24a3c171-48cb-4ca4-bbb4-921ee513ecc9"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lima Duarte, ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="27" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

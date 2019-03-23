@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PedidoExame" columnCount="2" pageWidth="425" pageHeight="652" columnWidth="178" leftMargin="41" rightMargin="28" topMargin="127" bottomMargin="78" uuid="92182c25-e62e-4a2d-a5fe-20e98a7a5e7b">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="103"/>
+	<queryString>
+		<![CDATA[SELECT
+	pedidoexame.idPedidoExame,
+	paciente.nomePaciente,
+	tipoexame.tipoExame,
+	exame.exame,
+	pedidoexame.dataPedidoExame
+FROM
+	paciente INNER JOIN pedidoexame ON paciente.idPaciente = pedidoexame.Paciente
+	INNER JOIN pedidoexameitens ON pedidoexame.idPedidoExame = pedidoexameitens.PedidoExame
+	INNER JOIN exame ON exame.idExame = pedidoexameitens.Exame
+	INNER JOIN tipoexame ON exame.TipoExame = tipoexame.idTipoExame
+	WHERE pedidoexame.idPedidoExame = 24
+	ORDER BY tipoexame.idTipoExame]]>
+	</queryString>
+	<field name="idPedidoExame" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomePaciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipoExame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataPedidoExame" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="nomePaciente_1" class="java.lang.Integer" resetType="Group" resetGroup="Paciente" calculation="Count">
+		<variableExpression><![CDATA[$F{nomePaciente}]]></variableExpression>
+	</variable>
+	<variable name="nomePaciente_2" class="java.lang.Integer" resetType="Group" resetGroup="Paciente" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{nomePaciente}]]></variableExpression>
+	</variable>
+	<group name="TipoExame">
+		<groupExpression><![CDATA[$F{tipoExame}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<textField>
+					<reportElement x="26" y="9" width="145" height="20" uuid="41d25981-3311-425c-bb54-5b826bd62dfa"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tipoExame}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="10" y="4" width="161" height="1" uuid="44caea32-56a9-4583-92ab-c1ee94c574d8"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Paciente">
+		<groupExpression><![CDATA[$F{nomePaciente}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="43" y="5" width="261" height="31" uuid="c034253d-8296-4466-845c-18287617dc44"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pedido de Exame]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="37" width="333" height="20" uuid="5d8c2cba-417c-45e6-ae55-0c877b61b30b"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomePaciente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="43" y="0" width="128" height="16" uuid="7dbee3ff-b7a8-4242-9484-25aab537b88b"/>
+				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10">
+			<break type="Column">
+				<reportElement x="0" y="6" width="100" height="1" uuid="d119260f-6f62-4549-b38b-073962e8e757"/>
+			</break>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="97">
+			<staticText>
+				<reportElement x="26" y="7" width="104" height="20" uuid="73b62741-db65-45de-b031-da8b39a9df42"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lima Duarte, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="7" width="217" height="19" uuid="eedf3bc4-1b68-4c9f-8846-55483837839c"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd' de 'MMMMM' de 'yyyy").format($F{dataPedidoExame})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
